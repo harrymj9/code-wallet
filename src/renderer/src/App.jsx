@@ -1,33 +1,59 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+
+import Header from './components/Header'
+import Fragments from './pages/Fragments'
+import Tags from './pages/Tags'
+import Info from './components/Info'
+import FragmentForm from './pages/FragmentForm'
 
 function App() {
-  const ipcHandle = () => window.electron.ipcRenderer.send('ping')
+  const [fragments, setFragments] = useState([])
+
+
+  // For the dark mode
+  const [darkMode, setDarkMode] = useState(false)
+  useEffect(() => {
+    document.body.classList.toggle('dark', darkMode)
+  }, [darkMode])
+
+  const handleAddFragment = (newFragment) => {
+    setFragments([...fragments, newFragment])
+  }
+
+  const handleDeleteFragment = (id) => {
+    setFragments(fragments.filter(frag => frag.id !== id))
+  }
+
+  const handleEditFragment = (id, newCode) => {
+    setFragments(fragments.map(frag =>
+      frag.id === id ? { ...frag, code: newCode } : frag
+    ))
+  }
 
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
-    </>
+    <Router>
+      {/* the props this dark mode for the header*/}
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to="/fragments" />} />
+          <Route 
+            path="/fragments" 
+            element={
+              <Fragments 
+                fragments={fragments} 
+                onDelete={handleDeleteFragment} 
+                onEdit={handleEditFragment} 
+              />
+            } 
+          />
+          <Route path="/tags" element={<Tags />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/new" element={<FragmentForm onSave={handleAddFragment} />} />
+        </Routes>
+      </main>
+    </Router>
   )
 }
 

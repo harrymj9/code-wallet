@@ -1,0 +1,39 @@
+
+
+.fragment-form {
+  max-width: 100%;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+.fragment-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+.fragment-form label :hover{
+  background-color: chartreuse;
+}
+
+.fragment-form input,
+.fragment-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  box-sizing: border-box;
+}
+
+.fragment-form .buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.fragment-form button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
