@@ -1,37 +1,42 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './FragmentForm.css'
 
-export default function FragmentForm({ onSave, onDelete, initialData = {} }) {
+export default function FragmentForm({ onSave, onDelete }) {
   const navigate = useNavigate()
-  const [title, setTitle] = useState(initialData.title || '')
-  const [code, setCode] = useState(initialData.code || '')
-  const [tags, setTags] = useState(initialData.tags || [])
+  const location = useLocation()
+  const fragment = location.state?.fragment
+
+  const [title, setTitle] = useState('')
+  const [code, setCode] = useState('')
+  const [tags, setTags] = useState('')
+
+  useEffect(() => {
+    if (fragment) {
+      setTitle(fragment.title || '')
+      setCode(fragment.code || '')
+      setTags(fragment.tags?.join(', ') || '')
+    }
+  }, [fragment])
 
   const handleSave = () => {
     if (!title.trim() || !code.trim()) return
     const newFragment = {
-      id: initialData.id || Date.now(),
+      id: fragment?.id || Date.now(),
       title,
       code,
-      tags
+      tags: tags.split(',').map(t => t.trim()).filter(Boolean)
     }
     onSave(newFragment)
-    navigate('/fragments')  
-  }
-
-  const handleDelete = () => {
-    if (initialData.id && onDelete) {
-      onDelete(initialData.id)
-    }
     navigate('/fragments')
   }
 
-  //const handleInfo = () => { navigate('/info')}
+ 
+
 
   return (
     <div className="fragment-form">
-      <h2>Form</h2>
+      <h2>{fragment ? 'Edit Fragment' : 'New Fragment'}</h2>
 
       <label>Title</label>
       <input
@@ -43,7 +48,7 @@ export default function FragmentForm({ onSave, onDelete, initialData = {} }) {
 
       <label>Code</label>
       <textarea
-        placeholder="your code here..."
+        placeholder="Your code here..."
         value={code}
         onChange={(e) => setCode(e.target.value)}
         rows="6"
@@ -53,24 +58,14 @@ export default function FragmentForm({ onSave, onDelete, initialData = {} }) {
       <input
         type="text"
         placeholder="React, Redux"
-        value={tags.join(', ')}
-        onChange={(e) =>
-          setTags(
-            e.target.value
-              .split()
-              .map(t => t.trim())
-              .filter(Boolean)
-          )
-        }
+        value={tags}
+        onChange={(e) => setTags(e.target.value)}
       />
 
-      <div className="buttons">
-        <button onClick={handleSave}>Sauvegarder</button>
-        {initialData.id && <button onClick={handleDelete}>Supprimer</button>}
-        {/* <button onClick={handleInfo}>Info</button>*/}
+      <div className="form-actions">
+        <button onClick={handleSave}>Save</button>
+        <button onClick={() => navigate('/fragments')}> Cancel</button>
       </div>
     </div>
   )
 }
-
- 
