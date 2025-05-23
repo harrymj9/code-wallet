@@ -44,6 +44,9 @@ const handleDelete = () => {
     closeModal();
   };
 
+
+
+  
   return (
     <div className="fragments-container">
       <h2>MY CODE FRAGMENTS</h2>

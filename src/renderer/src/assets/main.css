@@ -52,11 +52,12 @@ body {
 .fragment-card h3 {
   font-size: 18px;
   margin-bottom: 10px;
+  color: #000000;
 }
 
 .fragment-card p {
   font-size: 14px;
-  color: var(--text-color);
+  color: #000000;
 }
 
 .fragment-card button {
@@ -83,6 +84,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--modal-bg);
+ 
 }
 
 .modal-content {
@@ -96,10 +98,12 @@ body {
 }
 
 .modal-content pre {
-  background-color: var(--pre-bg);
-  padding: 10px;
+  background-color: #9a9292;
+  padding: 15px;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .modal-content button {
@@ -134,7 +138,7 @@ body {
 }
 
 .logo a {
-  color: #7BC950;
+  color:#9A48D0;
   text-decoration: none;
 }
 
@@ -150,6 +154,6 @@ body {
 }
 
 .nav button:hover {
-  background-color: var(--button-hover);
+  background-color:#9A48D0;
   border-radius: 4px;
 }

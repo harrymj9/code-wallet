@@ -15,7 +15,7 @@ export default function Header({ darkMode, setDarkMode }) {
         <Link to="/new"><button>New</button></Link>
         <Link to="/info"><button>Info</button></Link>
         <button onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? '☀️ Light' : '🌙 Dark'}
+          {darkMode ? '☀️' : '🌙'}
         </button>
       </nav>
     </header>

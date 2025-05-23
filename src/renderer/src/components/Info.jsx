@@ -29,7 +29,7 @@ export default function Info() {
       <section style={{ marginTop: '2rem' }}>
         <h2>3. Legal & Data Management</h2>
         <p>
-          Code Wallet does not collect any personal data. All data is stored locally in the node json db.
+          Code Wallet does not collect any personal data. All data is stored locally in the Firebase.
         </p>
         <p>
           If the app is extended in the future to include authentication or database storage, it will fully comply with GDPR (General Data Protection Regulation) standards.

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './FragmentForm.css'
 
-export default function FragmentForm({ onSave, onDelete }) {
+export default function FragmentForm({ onSave}) {
   const navigate = useNavigate()
   const location = useLocation()
   const fragment = location.state?.fragment
@@ -36,7 +36,6 @@ export default function FragmentForm({ onSave, onDelete }) {
 
   return (
     <div className="fragment-form">
-      <h2>{fragment ? 'Edit Fragment' : 'New Fragment'}</h2>
 
       <label>Title</label>
       <input

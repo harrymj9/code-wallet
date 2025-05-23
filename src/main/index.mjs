@@ -34,6 +34,9 @@ function createWindow() {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+
+
 }
 
 // This method will be called when Electron has finished
@@ -52,7 +55,7 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
-
+  
   createWindow()
 
   app.on('activate', function () {

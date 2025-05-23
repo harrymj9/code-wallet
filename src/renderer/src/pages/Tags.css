@@ -1,44 +1,46 @@
-.tags-page {
-    padding: 20px;
-  }
+.tags-page{
+padding: 55px;
+}
+
+.tags-page button{
+
+padding: 5px;
+border-radius: 5px;
+  font-weight: bold;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 300px;
+  color: black;
+}
+
+.modal-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tag-item {
+  padding: 10px;
+  background: #f2f2f2;
+  margin-bottom: 5px;
+  border-radius: 5px;
+color: black;
   
-  .form {
-    margin-bottom: 20px;
-  }
-  
-  .form input {
-    padding: 8px;
-    margin-right: 10px;
-    font-size: 14px;
-  }
-  
-  .form button {
-    padding: 8px 14px;
-    background-color: #7bc950;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .tag-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .tag-list li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .tag-list button {
-    background-color: #b288c0;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
+}
+
+.tag-item:hover {
+  background: #9A48D0;
+}
